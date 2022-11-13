@@ -16,3 +16,19 @@ notes.delete('/:id', (req, res) => {
         });
 });
 
+notes.post('/', (req, res) => {
+    const { title, text } = req.body;
+    if (title && text) {
+        var id = Date.now();
+        const addNote = {
+            title, text, id
+        };
+        appendFile(addNote, './db/db.json');
+        res.json(`Note added`);
+    } else {
+        res.error('Could not add note');
+    }
+});
+
+
+module.exports = notes;
