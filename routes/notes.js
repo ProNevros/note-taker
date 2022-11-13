@@ -1,10 +1,6 @@
 const app = require('express').Router();
 const { readFile, appendFile, writeFile } = require('../helper/util');
 
-app.get('/', (req, res) => {
-    readFile('./db/db.json').then((data) => res.json(JSON.parse(data)));
-});
-
 app.delete('/:id', (req, res) => {
     const noteId = req.params.id;
     readFile('./db/db.json')
@@ -30,5 +26,8 @@ app.post('/', (req, res) => {
     }
 });
 
+app.get('/', (req, res) => {
+    readFile('./db/db.json').then((data) => res.json(JSON.parse(data)));
+});
 
 module.exports = app;
