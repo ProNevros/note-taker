@@ -6,7 +6,7 @@ Provide a short description explaining the what, why, and how of your project. U
 
 As a struggling student, I wanted to make an application that could easily help me with tasks that need to be done. My biggest takeaway from this was learning how routes worked and the file structure is very important to getting the app to work correctly.
 
-![alt text](assets/images/screenshot.png)
+![Test image](assets/screenshot.png)
 
 ## Credits
 
