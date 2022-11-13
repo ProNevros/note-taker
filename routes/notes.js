@@ -1,22 +1,23 @@
-const notes = require('express').Router();
-const { readFile, appendFile, writeFile } = require('../helpers/utils');
+const app = require('express').Router();
 
-notes.get('/', (req, res) => {
+const { readFile, appendFile, writeFile } = require('../helper/util');
+
+app.get('/', (req, res) => {
     readFile('./db/db.json').then((data) => res.json(JSON.parse(data)));
 });
 
-notes.delete('/:id', (req, res) => {
+app.delete('/:id', (req, res) => {
     const noteId = req.params.id;
     readFile('./db/db.json')
         .then((data) => JSON.parse(data))
         .then((json) => {
-            const result = json.filter((note) => note.id != noteId);
-            writeFile('./db/db.json', result);
+            const newId = json.filter((note) => note.id != noteId);
+            writeFile('./db/db.json', newId);
             res.json(`Note ${noteId} was deleted`);
         });
 });
 
-notes.post('/', (req, res) => {
+app.post('/', (req, res) => {
     const { title, text } = req.body;
     if (title && text) {
         var id = Date.now();
@@ -31,4 +32,4 @@ notes.post('/', (req, res) => {
 });
 
 
-module.exports = notes;
+module.exports = app;
