@@ -1,5 +1,4 @@
 const app = require('express').Router();
-
 const { readFile, appendFile, writeFile } = require('../helper/util');
 
 app.get('/', (req, res) => {
@@ -13,7 +12,7 @@ app.delete('/:id', (req, res) => {
         .then((json) => {
             const newId = json.filter((note) => note.id != noteId);
             writeFile('./db/db.json', newId);
-            res.json(`Note ${noteId} was deleted`);
+            res.json(`Note ${noteId} deleted`);
         });
 });
 
@@ -25,7 +24,7 @@ app.post('/', (req, res) => {
             title, text, id
         };
         appendFile(addNote, './db/db.json');
-        res.json(`Note added`);
+        res.json(`Added`);
     } else {
         res.error('Could not add note');
     }
